@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_app/utils/dialog_box.dart';
+import 'package:test_app/utils/workout.dart';
 
 class WorkoutsPage extends StatefulWidget {
   const WorkoutsPage({super.key});
@@ -12,13 +13,6 @@ class _WorkoutsPageState extends State<WorkoutsPage> {
   final _controller = TextEditingController();
 
   List workouts = [];
-
-  bool isEven(int number) {
-    if (number % 2 == 0) {
-      return true;
-    }
-    return false;
-  }
 
   void saveNewWorkout() {
     // Logic to save the new workout
@@ -48,17 +42,19 @@ class _WorkoutsPageState extends State<WorkoutsPage> {
       body: ListView.builder(
         itemCount: workouts.length,
         itemBuilder: (context, index) {
-          return ListTile(
-            tileColor: isEven(index) ? Colors.blue[100] : Colors.blue[200],
-            title: Text(workouts[index]),
-            trailing: IconButton(
-              icon: Icon(Icons.delete),
-              onPressed: () {
-                setState(() {
-                  workouts.removeAt(index);
-                });
-              },
-            ),
+          return Workout(
+            name: workouts[index],
+            index: index,
+            workouts: workouts,
+            onDelete: () {
+              final deletedName = workouts[index];
+              setState(() {
+                workouts.removeAt(index);
+              });
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text('Deleted $deletedName')));
+            },
           );
         },
       ),
