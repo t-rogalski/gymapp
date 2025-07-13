@@ -39,25 +39,30 @@ class _WorkoutsPageState extends State<WorkoutsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.builder(
-        itemCount: workouts.length,
-        itemBuilder: (context, index) {
-          return Workout(
-            name: workouts[index],
-            index: index,
-            workouts: workouts,
-            onDelete: () {
-              final deletedName = workouts[index];
-              setState(() {
-                workouts.removeAt(index);
-              });
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(SnackBar(content: Text('Deleted $deletedName')));
-            },
-          );
-        },
-      ),
+      body: workouts.isEmpty
+          ? Center(child: Text('Add some workouts!'))
+          : ListView.builder(
+              itemCount: workouts.length,
+              itemBuilder: (context, index) {
+                return Workout(
+                  name: workouts[index],
+                  index: index,
+                  workouts: workouts,
+                  onDelete: () {
+                    final deletedName = workouts[index];
+                    setState(() {
+                      workouts.removeAt(index);
+                    });
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Deleted $deletedName'),
+                        duration: Duration(seconds: 1),
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
       floatingActionButton: FloatingActionButton(
         hoverColor: Colors.blue[800],
         backgroundColor: Colors.blue[400],

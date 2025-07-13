@@ -28,9 +28,12 @@ class Workout extends StatelessWidget {
       title: Text(name),
       onTap: () {
         // Logic to handle tap on workout
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text('Tapped on ${workouts[index]}')));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Tapped on ${workouts[index]}'),
+            duration: Duration(seconds: 1),
+          ),
+        );
       },
       trailing: IconButton(icon: Icon(Icons.delete), onPressed: onDelete),
     );
