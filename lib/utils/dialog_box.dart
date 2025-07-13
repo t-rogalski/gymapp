@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:test_app/utils/dialog_button.dart';
 
 class DialogBox extends StatelessWidget {
-  const DialogBox({super.key});
+  final controller;
+  VoidCallback onSave;
+  VoidCallback onCancel;
+
+  DialogBox({
+    super.key,
+    required this.controller,
+    required this.onSave,
+    required this.onCancel,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,37 +29,15 @@ class DialogBox extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 5),
                 child: TextField(
+                  controller: controller,
                   decoration: InputDecoration(hintText: 'Enter workout name'),
                 ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  MaterialButton(
-                    onPressed: () {
-                      // Logic to save the workout
-                      Navigator.of(context).pop();
-                    },
-                    color: Colors.blue[400],
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Text('Save', style: TextStyle(color: Colors.white)),
-                  ),
-                  SizedBox(width: 10),
-                  MaterialButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    color: Colors.blue[400],
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Text(
-                      'Cancel',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
+                  DialogButton(onPressed: onSave, text: 'Save'),
+                  DialogButton(onPressed: onCancel, text: 'Cancel'),
                 ],
               ),
             ],
