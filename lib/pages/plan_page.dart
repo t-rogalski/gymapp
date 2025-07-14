@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_app/utils/add_button.dart';
 
 class PlanPage extends StatefulWidget {
   final String workoutName;
@@ -17,8 +18,6 @@ class PlanPage extends StatefulWidget {
 }
 
 class _PlanPageState extends State<PlanPage> {
-  final _exerciseController = TextEditingController();
-
   bool isEven(int number) {
     if (number % 2 == 0) {
       return true;
@@ -35,40 +34,14 @@ class _PlanPageState extends State<PlanPage> {
             : Colors.blue[200],
         title: Text(widget.workoutName),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: ListView.builder(
-              itemCount: widget.plan.length,
-              itemBuilder: (context, index) =>
-                  ListTile(title: Text(widget.plan[index])),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: _exerciseController,
-                    decoration: InputDecoration(hintText: 'Add exercise'),
-                  ),
-                ),
-                IconButton(
-                  icon: Icon(Icons.add),
-                  onPressed: () {
-                    if (_exerciseController.text.trim().isNotEmpty) {
-                      setState(() {
-                        widget.plan.add(_exerciseController.text.trim());
-                        _exerciseController.clear();
-                      });
-                    }
-                  },
-                ),
-              ],
-            ),
-          ),
-        ],
+      body: ListView.builder(
+        itemCount: widget.plan.length,
+        itemBuilder: (context, index) =>
+            ListTile(title: Text(widget.plan[index])),
+      ),
+      floatingActionButton: AddButton(
+        tooltip: 'Add Exercise',
+        onPressed: () => {},
       ),
     );
   }

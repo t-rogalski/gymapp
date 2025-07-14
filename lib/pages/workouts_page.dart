@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:test_app/utils/dialog_box.dart';
 import 'package:test_app/utils/workout.dart';
 import 'package:test_app/pages/plan_page.dart';
+import 'package:test_app/utils/add_button.dart';
 
 class WorkoutsPage extends StatefulWidget {
   const WorkoutsPage({super.key});
@@ -79,13 +80,10 @@ class _WorkoutsPageState extends State<WorkoutsPage> {
                 );
               },
             ),
-      floatingActionButton: FloatingActionButton(
-        hoverColor: Colors.blue[800],
-        backgroundColor: Colors.blue[400],
+
+      floatingActionButton: AddButton(
         tooltip: 'Add Workout',
-        shape: const CircleBorder(),
         onPressed: () => createNewWorkout(context),
-        child: Icon(Icons.add, color: Colors.white),
       ),
     );
   }
