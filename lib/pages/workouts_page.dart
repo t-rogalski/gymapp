@@ -12,6 +12,7 @@ class WorkoutsPage extends StatefulWidget {
 }
 
 class _WorkoutsPageState extends State<WorkoutsPage> {
+  final List<String> allExercises = ['Push-up', 'Squat', 'Pull-up', 'Plank'];
   final _controller = TextEditingController();
 
   List workouts = [];
@@ -73,6 +74,7 @@ class _WorkoutsPageState extends State<WorkoutsPage> {
                           workoutName: workouts[index],
                           plan: workoutPlans[workouts[index]]!,
                           index: index,
+                          allExercises: allExercises,
                         ),
                       ),
                     );
