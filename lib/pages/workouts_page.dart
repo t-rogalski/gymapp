@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_app/utils/dialog_box.dart';
 import 'package:test_app/utils/workout.dart';
+import 'package:test_app/pages/plan_page.dart';
 
 class WorkoutsPage extends StatefulWidget {
   const WorkoutsPage({super.key});
@@ -13,6 +14,7 @@ class _WorkoutsPageState extends State<WorkoutsPage> {
   final _controller = TextEditingController();
 
   List workouts = [];
+  Map<String, List<String>> workoutPlans = {};
 
   void saveNewWorkout() {
     // Logic to save the new workout
@@ -52,11 +54,25 @@ class _WorkoutsPageState extends State<WorkoutsPage> {
                     final deletedName = workouts[index];
                     setState(() {
                       workouts.removeAt(index);
+                      workoutPlans.remove(deletedName);
                     });
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text('Deleted $deletedName'),
                         duration: Duration(seconds: 1),
+                      ),
+                    );
+                  },
+                  onTap: () {
+                    workoutPlans.putIfAbsent(workouts[index], () => []);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PlanPage(
+                          workoutName: workouts[index],
+                          plan: workoutPlans[workouts[index]]!,
+                          index: index,
+                        ),
                       ),
                     );
                   },

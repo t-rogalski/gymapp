@@ -5,6 +5,7 @@ class Workout extends StatelessWidget {
   final int index;
   final List workouts;
   VoidCallback onDelete;
+  VoidCallback onTap;
 
   Workout({
     super.key,
@@ -12,6 +13,7 @@ class Workout extends StatelessWidget {
     required this.index,
     required this.workouts,
     required this.onDelete,
+    required this.onTap,
   });
 
   bool isEven(int number) {
@@ -26,15 +28,7 @@ class Workout extends StatelessWidget {
     return ListTile(
       tileColor: isEven(index) ? Colors.blue[100] : Colors.blue[200],
       title: Text(name),
-      onTap: () {
-        // Logic to handle tap on workout
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Tapped on ${workouts[index]}'),
-            duration: Duration(seconds: 1),
-          ),
-        );
-      },
+      onTap: onTap,
       trailing: IconButton(icon: Icon(Icons.delete), onPressed: onDelete),
     );
   }
