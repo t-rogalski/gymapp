@@ -1,0 +1,57 @@
+{
+  // ─── Dart / Flutter ───────────────────────────────────────────────────────
+  "dart.lineLength": 80,
+  "dart.previewFlutterUiGuides": true,
+  "dart.flutterSdkPath": null, // każdy dev ustawia lokalnie w ustawieniach użytkownika
+  // ─── Formatowanie (globalne) ───────────────────────────────────────────────
+  "editor.formatOnSave": true,
+  "editor.formatOnType": false,
+  "editor.formatOnPaste": false,
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "editor.rulers": [80],
+  "editor.trimAutoWhitespace": true,
+  // ─── Pliki ─────────────────────────────────────────────────────────────────
+  "files.eol": "\n", // LF — wymusza spójność między macOS / Linux / Windows
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.encoding": "utf8",
+  // ─── Ustawienia specyficzne dla języka ────────────────────────────────────
+  "[dart]": {
+    "editor.defaultFormatter": "Dart-Code.dart-code",
+    "editor.formatOnSave": true,
+    "editor.selectionHighlight": false,
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": "off"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml",
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.tabSize": 2
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.tabSize": 2
+  },
+  // ─── Git ───────────────────────────────────────────────────────────────────
+  "git.autocrlf": false, // NIE konwertuj CRLF automatycznie — .gitattributes to ogarnia
+  "git.ignoreLimitWarning": true,
+  // ─── Explorer ──────────────────────────────────────────────────────────────
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "*.dart": "${capture}.g.dart, ${capture}.freezed.dart"
+  },
+  // ─── Wyszukiwanie — ignorowanie wygenerowanych plików ────────────────────
+  "search.exclude": {
+    "**/.dart_tool": true,
+    "**/build": true,
+    "**/*.g.dart": true,
+    "**/*.freezed.dart": true
+  }
+}

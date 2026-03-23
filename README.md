@@ -1,1 +1,1 @@
-# gymApp
+# gymapp
