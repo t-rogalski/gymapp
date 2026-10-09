@@ -118,7 +118,9 @@ class GeneratorScreen extends ConsumerWidget {
   Future<void> _generate(BuildContext context, WidgetRef ref) async {
     LoadingOverlay.show(context);
     try {
-      final plan = await ref.read(generatorNotifierProvider.notifier).generate();
+      final plan = await ref
+          .read(generatorNotifierProvider.notifier)
+          .generate();
       if (!context.mounted) return;
       LoadingOverlay.hide(context);
       ref.read(workoutPlansNotifierProvider.notifier).addGeneratedPlan(plan);
@@ -190,7 +192,9 @@ class _GoalChips extends StatelessWidget {
             color: isSelected ? AppColors.warmWhite : AppColors.textPrimary,
             fontWeight: FontWeight.w500,
           ),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
           side: BorderSide.none,
         );
       }).toList(),
@@ -222,7 +226,9 @@ class _LevelSelector extends StatelessWidget {
               margin: const EdgeInsets.symmetric(horizontal: 4),
               padding: const EdgeInsets.symmetric(vertical: 16),
               decoration: BoxDecoration(
-                color: isSelected ? AppColors.sage.withValues(alpha: 0.1) : AppColors.warmWhite,
+                color: isSelected
+                    ? AppColors.sage.withValues(alpha: 0.1)
+                    : AppColors.warmWhite,
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
                   color: isSelected ? AppColors.sageDark : AppColors.creamDark,
@@ -237,8 +243,12 @@ class _LevelSelector extends StatelessWidget {
                     l.$2,
                     style: TextStyle(
                       fontSize: 11,
-                      fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
-                      color: isSelected ? AppColors.sageDark : AppColors.textSecondary,
+                      fontWeight: isSelected
+                          ? FontWeight.w600
+                          : FontWeight.w400,
+                      color: isSelected
+                          ? AppColors.sageDark
+                          : AppColors.textSecondary,
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -361,7 +371,9 @@ class _DurationSelector extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w500,
-                    color: isSelected ? AppColors.warmWhite : AppColors.textPrimary,
+                    color: isSelected
+                        ? AppColors.warmWhite
+                        : AppColors.textPrimary,
                   ),
                 ),
               ),

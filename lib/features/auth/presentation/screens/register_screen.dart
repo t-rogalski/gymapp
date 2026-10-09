@@ -70,11 +70,15 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
 
   String? _validate() {
     if (_nameController.text.trim().isEmpty) return 'Podaj imię';
-    if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(_emailController.text.trim())) {
+    if (!RegExp(
+      r'^[^@]+@[^@]+\.[^@]+',
+    ).hasMatch(_emailController.text.trim())) {
       return 'Nieprawidłowy adres e-mail';
     }
-    if (_passwordController.text.length < 6) return 'Hasło musi mieć min. 6 znaków';
-    if (_passwordController.text != _confirmController.text) return 'Hasła nie są zgodne';
+    if (_passwordController.text.length < 6)
+      return 'Hasło musi mieć min. 6 znaków';
+    if (_passwordController.text != _confirmController.text)
+      return 'Hasła nie są zgodne';
     return null;
   }
 
@@ -89,14 +93,16 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
 
     setState(() => _isLoading = true);
 
-    await ref.read(authNotifierProvider.notifier).register(
-      name: _nameController.text.trim(),
-      email: _emailController.text.trim(),
-      password: _passwordController.text,
-      fitnessLevel: _fitnessLevel,
-      weightKg: _weightKg,
-      heightCm: _heightCm,
-    );
+    await ref
+        .read(authNotifierProvider.notifier)
+        .register(
+          name: _nameController.text.trim(),
+          email: _emailController.text.trim(),
+          password: _passwordController.text,
+          fitnessLevel: _fitnessLevel,
+          weightKg: _weightKg,
+          heightCm: _heightCm,
+        );
 
     if (!mounted) return;
     setState(() => _isLoading = false);
@@ -153,8 +159,13 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                     hintText: 'Hasło',
                     prefixIcon: const Icon(Icons.lock_outlined),
                     suffixIcon: IconButton(
-                      icon: Icon(_obscurePassword ? Icons.visibility_off_outlined : Icons.visibility_outlined),
-                      onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
+                      icon: Icon(
+                        _obscurePassword
+                            ? Icons.visibility_off_outlined
+                            : Icons.visibility_outlined,
+                      ),
+                      onPressed: () =>
+                          setState(() => _obscurePassword = !_obscurePassword),
                     ),
                   ),
                 ),
@@ -187,8 +198,13 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                     hintText: 'Potwierdź hasło',
                     prefixIcon: const Icon(Icons.lock_outlined),
                     suffixIcon: IconButton(
-                      icon: Icon(_obscureConfirm ? Icons.visibility_off_outlined : Icons.visibility_outlined),
-                      onPressed: () => setState(() => _obscureConfirm = !_obscureConfirm),
+                      icon: Icon(
+                        _obscureConfirm
+                            ? Icons.visibility_off_outlined
+                            : Icons.visibility_outlined,
+                      ),
+                      onPressed: () =>
+                          setState(() => _obscureConfirm = !_obscureConfirm),
                     ),
                   ),
                 ),
@@ -211,12 +227,19 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                 // Fitness level
                 SegmentedButton<String>(
                   segments: const [
-                    ButtonSegment(value: 'beginner', label: Text('Początkujący')),
+                    ButtonSegment(
+                      value: 'beginner',
+                      label: Text('Początkujący'),
+                    ),
                     ButtonSegment(value: 'intermediate', label: Text('Średni')),
-                    ButtonSegment(value: 'advanced', label: Text('Zaawansowany')),
+                    ButtonSegment(
+                      value: 'advanced',
+                      label: Text('Zaawansowany'),
+                    ),
                   ],
                   selected: {_fitnessLevel},
-                  onSelectionChanged: (v) => setState(() => _fitnessLevel = v.first),
+                  onSelectionChanged: (v) =>
+                      setState(() => _fitnessLevel = v.first),
                   style: SegmentedButton.styleFrom(
                     selectedBackgroundColor: AppColors.sage,
                     selectedForegroundColor: AppColors.warmWhite,
@@ -228,9 +251,14 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text('Waga', style: TextStyle(color: AppColors.textSecondary)),
-                    Text('${_weightKg.toStringAsFixed(1)} kg',
-                        style: const TextStyle(fontWeight: FontWeight.w600)),
+                    const Text(
+                      'Waga',
+                      style: TextStyle(color: AppColors.textSecondary),
+                    ),
+                    Text(
+                      '${_weightKg.toStringAsFixed(1)} kg',
+                      style: const TextStyle(fontWeight: FontWeight.w600),
+                    ),
                   ],
                 ),
                 Slider(
@@ -246,9 +274,14 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text('Wzrost', style: TextStyle(color: AppColors.textSecondary)),
-                    Text('$_heightCm cm',
-                        style: const TextStyle(fontWeight: FontWeight.w600)),
+                    const Text(
+                      'Wzrost',
+                      style: TextStyle(color: AppColors.textSecondary),
+                    ),
+                    Text(
+                      '$_heightCm cm',
+                      style: const TextStyle(fontWeight: FontWeight.w600),
+                    ),
                   ],
                 ),
                 Slider(
@@ -271,7 +304,10 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                         ? const SizedBox(
                             height: 20,
                             width: 20,
-                            child: CircularProgressIndicator(strokeWidth: 2, color: AppColors.warmWhite),
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              color: AppColors.warmWhite,
+                            ),
                           )
                         : const Text('Utwórz konto'),
                   ),
@@ -282,12 +318,18 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text('Masz już konto? ', style: TextStyle(color: AppColors.textSecondary)),
+                    const Text(
+                      'Masz już konto? ',
+                      style: TextStyle(color: AppColors.textSecondary),
+                    ),
                     GestureDetector(
                       onTap: () => context.go('/login'),
                       child: const Text(
                         'Zaloguj się →',
-                        style: TextStyle(color: AppColors.sageDark, fontWeight: FontWeight.w600),
+                        style: TextStyle(
+                          color: AppColors.sageDark,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                   ],

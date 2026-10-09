@@ -17,7 +17,13 @@ class AuthRepository {
     heightCm: 180,
     fitnessLevel: 'intermediate',
     fitnessGoals: ['hypertrophy', 'strength'],
-    availableEquipment: ['barbell', 'dumbbell', 'cable', 'machine', 'pullUpBar'],
+    availableEquipment: [
+      'barbell',
+      'dumbbell',
+      'cable',
+      'machine',
+      'pullUpBar',
+    ],
     injuredJoints: [],
   );
 
@@ -38,7 +44,12 @@ class AuthRepository {
     int heightCm = 175,
   }) async {
     await Future.delayed(const Duration(milliseconds: 1500));
-    final initials = name.split(' ').map((w) => w.isNotEmpty ? w[0] : '').take(2).join().toUpperCase();
+    final initials = name
+        .split(' ')
+        .map((w) => w.isNotEmpty ? w[0] : '')
+        .take(2)
+        .join()
+        .toUpperCase();
     return UserModel(
       id: 'usr_${DateTime.now().millisecondsSinceEpoch}',
       name: name,

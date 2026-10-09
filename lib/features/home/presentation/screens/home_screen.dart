@@ -20,7 +20,8 @@ class HomeScreen extends ConsumerWidget {
       body: SafeArea(
         child: RefreshIndicator(
           color: AppColors.sageMid,
-          onRefresh: () async => await Future.delayed(const Duration(milliseconds: 500)),
+          onRefresh: () async =>
+              await Future.delayed(const Duration(milliseconds: 500)),
           child: SingleChildScrollView(
             physics: const AlwaysScrollableScrollPhysics(),
             padding: const EdgeInsets.all(16),
@@ -92,12 +93,16 @@ class HomeScreen extends ConsumerWidget {
                               const SizedBox(height: 8),
                               const Text(
                                 'Nie masz jeszcze żadnych planów',
-                                style: TextStyle(color: AppColors.textSecondary),
+                                style: TextStyle(
+                                  color: AppColors.textSecondary,
+                                ),
                               ),
                               const SizedBox(height: 8),
                               TextButton(
                                 onPressed: () => context.go('/generate'),
-                                child: const Text('Wygeneruj swój pierwszy plan'),
+                                child: const Text(
+                                  'Wygeneruj swój pierwszy plan',
+                                ),
                               ),
                             ],
                           ),
@@ -105,7 +110,8 @@ class HomeScreen extends ConsumerWidget {
                       : ListView.separated(
                           scrollDirection: Axis.horizontal,
                           itemCount: plans.length,
-                          separatorBuilder: (_, __) => const SizedBox(width: 12),
+                          separatorBuilder: (_, __) =>
+                              const SizedBox(width: 12),
                           itemBuilder: (context, index) {
                             return _PlanCard(plan: plans[index]);
                           },
@@ -196,7 +202,10 @@ class _ActivePlanCard extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 4,
+                      ),
                       decoration: BoxDecoration(
                         color: AppColors.sageMid.withValues(alpha: 0.15),
                         borderRadius: BorderRadius.circular(8),
@@ -229,10 +238,17 @@ class _ActivePlanCard extends StatelessWidget {
                         ),
                         child: Center(
                           child: done
-                              ? const Icon(Icons.check, size: 14, color: AppColors.warmWhite)
+                              ? const Icon(
+                                  Icons.check,
+                                  size: 14,
+                                  color: AppColors.warmWhite,
+                                )
                               : Text(
                                   '${i + 1}',
-                                  style: const TextStyle(fontSize: 11, color: AppColors.textMuted),
+                                  style: const TextStyle(
+                                    fontSize: 11,
+                                    color: AppColors.textMuted,
+                                  ),
                                 ),
                         ),
                       ),
@@ -327,14 +343,20 @@ class _PlanCard extends StatelessWidget {
                   Row(
                     children: [
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 6,
+                          vertical: 2,
+                        ),
                         decoration: BoxDecoration(
                           color: _difficultyColor.withValues(alpha: 0.2),
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text(
                           _difficultyLabel,
-                          style: TextStyle(fontSize: 10, color: _difficultyColor),
+                          style: TextStyle(
+                            fontSize: 10,
+                            color: _difficultyColor,
+                          ),
                         ),
                       ),
                       const Spacer(),

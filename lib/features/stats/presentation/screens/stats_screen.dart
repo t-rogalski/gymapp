@@ -35,17 +35,41 @@ class StatsScreen extends ConsumerWidget {
               // Metric cards 2x2
               Row(
                 children: [
-                  Expanded(child: _MetricCard(icon: '🔥', label: 'Seria', value: '${StatsRepository.currentStreak} dni')),
+                  Expanded(
+                    child: _MetricCard(
+                      icon: '🔥',
+                      label: 'Seria',
+                      value: '${StatsRepository.currentStreak} dni',
+                    ),
+                  ),
                   const SizedBox(width: 12),
-                  Expanded(child: _MetricCard(icon: '🏋️', label: 'Sesje', value: '${StatsRepository.totalWorkouts}')),
+                  Expanded(
+                    child: _MetricCard(
+                      icon: '🏋️',
+                      label: 'Sesje',
+                      value: '${StatsRepository.totalWorkouts}',
+                    ),
+                  ),
                 ],
               ),
               const SizedBox(height: 12),
               Row(
                 children: [
-                  Expanded(child: _MetricCard(icon: '⚡', label: 'Rekordy', value: '${StatsRepository.personalRecords}')),
+                  Expanded(
+                    child: _MetricCard(
+                      icon: '⚡',
+                      label: 'Rekordy',
+                      value: '${StatsRepository.personalRecords}',
+                    ),
+                  ),
                   const SizedBox(width: 12),
-                  Expanded(child: _MetricCard(icon: '⚖️', label: 'Cel', value: '-2.5 kg')),
+                  Expanded(
+                    child: _MetricCard(
+                      icon: '⚖️',
+                      label: 'Cel',
+                      value: '-2.5 kg',
+                    ),
+                  ),
                 ],
               ),
               const SizedBox(height: 28),
@@ -53,19 +77,24 @@ class StatsScreen extends ConsumerWidget {
               // Weight chart
               const Text(
                 'Waga (ostatnie 8 tygodni)',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: AppColors.textPrimary),
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.textPrimary,
+                ),
               ),
               const SizedBox(height: 12),
-              SizedBox(
-                height: 200,
-                child: _WeightChart(entries: history),
-              ),
+              SizedBox(height: 200, child: _WeightChart(entries: history)),
               const SizedBox(height: 28),
 
               // Muscle distribution
               const Text(
                 'Rozkład grup mięśniowych',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: AppColors.textPrimary),
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.textPrimary,
+                ),
               ),
               const SizedBox(height: 12),
               ...muscles.map((m) => _MuscleBar(stats: m)),
@@ -74,19 +103,24 @@ class StatsScreen extends ConsumerWidget {
               // Weekly activity
               const Text(
                 'Treningi / tydzień',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: AppColors.textPrimary),
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.textPrimary,
+                ),
               ),
               const SizedBox(height: 12),
-              SizedBox(
-                height: 160,
-                child: _WeeklyChart(data: weekly),
-              ),
+              SizedBox(height: 160, child: _WeeklyChart(data: weekly)),
               const SizedBox(height: 28),
 
               // Achievements
               const Text(
                 'Osiągnięcia',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: AppColors.textPrimary),
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.textPrimary,
+                ),
               ),
               const SizedBox(height: 12),
               SizedBox(
@@ -94,11 +128,31 @@ class StatsScreen extends ConsumerWidget {
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: const [
-                    _AchievementBadge(emoji: '🏆', label: 'Pierwszy trening', unlocked: true),
-                    _AchievementBadge(emoji: '🔥', label: '7-dniowa passa', unlocked: true),
-                    _AchievementBadge(emoji: '💪', label: '50 sesji', unlocked: false),
-                    _AchievementBadge(emoji: '⚡', label: '10 rekordów', unlocked: false),
-                    _AchievementBadge(emoji: '🎯', label: 'Cel wagowy', unlocked: false),
+                    _AchievementBadge(
+                      emoji: '🏆',
+                      label: 'Pierwszy trening',
+                      unlocked: true,
+                    ),
+                    _AchievementBadge(
+                      emoji: '🔥',
+                      label: '7-dniowa passa',
+                      unlocked: true,
+                    ),
+                    _AchievementBadge(
+                      emoji: '💪',
+                      label: '50 sesji',
+                      unlocked: false,
+                    ),
+                    _AchievementBadge(
+                      emoji: '⚡',
+                      label: '10 rekordów',
+                      unlocked: false,
+                    ),
+                    _AchievementBadge(
+                      emoji: '🎯',
+                      label: 'Cel wagowy',
+                      unlocked: false,
+                    ),
                   ],
                 ),
               ),
@@ -115,7 +169,11 @@ class _MetricCard extends StatelessWidget {
   final String icon;
   final String label;
   final String value;
-  const _MetricCard({required this.icon, required this.label, required this.value});
+  const _MetricCard({
+    required this.icon,
+    required this.label,
+    required this.value,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -131,9 +189,19 @@ class _MetricCard extends StatelessWidget {
         children: [
           Text(icon, style: const TextStyle(fontSize: 20)),
           const SizedBox(height: 8),
-          Text(label, style: const TextStyle(fontSize: 12, color: AppColors.textMuted)),
+          Text(
+            label,
+            style: const TextStyle(fontSize: 12, color: AppColors.textMuted),
+          ),
           const SizedBox(height: 2),
-          Text(value, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: AppColors.textPrimary)),
+          Text(
+            value,
+            style: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+              color: AppColors.textPrimary,
+            ),
+          ),
         ],
       ),
     );
@@ -164,7 +232,10 @@ class _WeightChart extends StatelessWidget {
               getTitlesWidget: (value, meta) {
                 return Text(
                   '${value.toInt()} kg',
-                  style: const TextStyle(fontSize: 10, color: AppColors.textMuted),
+                  style: const TextStyle(
+                    fontSize: 10,
+                    color: AppColors.textMuted,
+                  ),
                 );
               },
             ),
@@ -175,13 +246,20 @@ class _WeightChart extends StatelessWidget {
               getTitlesWidget: (value, meta) {
                 return Text(
                   'T${value.toInt() + 1}',
-                  style: const TextStyle(fontSize: 10, color: AppColors.textMuted),
+                  style: const TextStyle(
+                    fontSize: 10,
+                    color: AppColors.textMuted,
+                  ),
                 );
               },
             ),
           ),
-          topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-          rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+          topTitles: const AxisTitles(
+            sideTitles: SideTitles(showTitles: false),
+          ),
+          rightTitles: const AxisTitles(
+            sideTitles: SideTitles(showTitles: false),
+          ),
         ),
         borderData: FlBorderData(show: false),
         lineBarsData: [
@@ -192,12 +270,13 @@ class _WeightChart extends StatelessWidget {
             barWidth: 3,
             dotData: FlDotData(
               show: true,
-              getDotPainter: (spot, percent, barData, index) => FlDotCirclePainter(
-                radius: 4,
-                color: AppColors.sageMid,
-                strokeWidth: 2,
-                strokeColor: AppColors.warmWhite,
-              ),
+              getDotPainter: (spot, percent, barData, index) =>
+                  FlDotCirclePainter(
+                    radius: 4,
+                    color: AppColors.sageMid,
+                    strokeWidth: 2,
+                    strokeColor: AppColors.warmWhite,
+                  ),
             ),
             belowBarData: BarAreaData(
               show: true,
@@ -234,7 +313,10 @@ class _MuscleBar extends StatelessWidget {
             width: 60,
             child: Text(
               stats.muscle,
-              style: const TextStyle(fontSize: 13, color: AppColors.textSecondary),
+              style: const TextStyle(
+                fontSize: 13,
+                color: AppColors.textSecondary,
+              ),
             ),
           ),
           Expanded(
@@ -243,7 +325,9 @@ class _MuscleBar extends StatelessWidget {
               child: LinearProgressIndicator(
                 value: stats.percentage / 100,
                 backgroundColor: AppColors.creamDark,
-                color: AppColors.sageMid.withValues(alpha: 0.4 + (stats.percentage / 100) * 0.6),
+                color: AppColors.sageMid.withValues(
+                  alpha: 0.4 + (stats.percentage / 100) * 0.6,
+                ),
                 minHeight: 16,
               ),
             ),
@@ -253,7 +337,11 @@ class _MuscleBar extends StatelessWidget {
             width: 36,
             child: Text(
               '${stats.percentage.toInt()}%',
-              style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: AppColors.textPrimary),
+              style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                color: AppColors.textPrimary,
+              ),
               textAlign: TextAlign.right,
             ),
           ),
@@ -273,16 +361,25 @@ class _WeeklyChart extends StatelessWidget {
       BarChartData(
         gridData: const FlGridData(show: false),
         titlesData: FlTitlesData(
-          leftTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-          topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-          rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+          leftTitles: const AxisTitles(
+            sideTitles: SideTitles(showTitles: false),
+          ),
+          topTitles: const AxisTitles(
+            sideTitles: SideTitles(showTitles: false),
+          ),
+          rightTitles: const AxisTitles(
+            sideTitles: SideTitles(showTitles: false),
+          ),
           bottomTitles: AxisTitles(
             sideTitles: SideTitles(
               showTitles: true,
               getTitlesWidget: (value, meta) {
                 return Text(
                   'T${value.toInt() + 1}',
-                  style: const TextStyle(fontSize: 10, color: AppColors.textMuted),
+                  style: const TextStyle(
+                    fontSize: 10,
+                    color: AppColors.textMuted,
+                  ),
                 );
               },
             ),
@@ -298,7 +395,9 @@ class _WeeklyChart extends StatelessWidget {
                 toY: e.value.toDouble(),
                 color: isLast ? AppColors.sageDark : AppColors.sky,
                 width: 20,
-                borderRadius: const BorderRadius.vertical(top: Radius.circular(6)),
+                borderRadius: const BorderRadius.vertical(
+                  top: Radius.circular(6),
+                ),
               ),
             ],
           );
@@ -312,7 +411,11 @@ class _AchievementBadge extends StatelessWidget {
   final String emoji;
   final String label;
   final bool unlocked;
-  const _AchievementBadge({required this.emoji, required this.label, required this.unlocked});
+  const _AchievementBadge({
+    required this.emoji,
+    required this.label,
+    required this.unlocked,
+  });
 
   @override
   Widget build(BuildContext context) {

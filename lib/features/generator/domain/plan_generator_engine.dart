@@ -8,10 +8,7 @@ class PlanGeneratorEngine {
   final GeneratorConfig config;
   final List<ExerciseModel> exercisePool;
 
-  PlanGeneratorEngine({
-    required this.config,
-    required this.exercisePool,
-  });
+  PlanGeneratorEngine({required this.config, required this.exercisePool});
 
   WorkoutPlanModel generate() {
     final structure = _buildSessionStructure();
@@ -20,11 +17,13 @@ class PlanGeneratorEngine {
     for (int i = 0; i < structure.length; i++) {
       final session = structure[i];
       final exercises = _buildSession(session, i);
-      days.add(WorkoutDay(
-        dayNumber: i + 1,
-        label: session.label,
-        exercises: exercises,
-      ));
+      days.add(
+        WorkoutDay(
+          dayNumber: i + 1,
+          label: session.label,
+          exercises: exercises,
+        ),
+      );
     }
 
     final name = _generatePlanName();
@@ -57,19 +56,31 @@ class PlanGeneratorEngine {
     final templates = <_SessionTemplate>[];
 
     for (int i = 0; i < config.daysPerWeek; i++) {
-      templates.add(_SessionTemplate(
-        label: 'Full Body ${_dayLetter(i)}',
-        targetMuscles: ['chest', 'back', 'quads', 'glutes', 'hamstrings', 'shoulders', 'biceps', 'triceps', 'core'],
-        primarySlots: 2,
-        secondarySlots: slotsPerSession.secondary,
-        accessorySlots: slotsPerSession.accessory,
-        requiredPatterns: [
-          MovementPattern.horizontalPush,
-          MovementPattern.horizontalPull,
-          MovementPattern.squat,
-          MovementPattern.hinge,
-        ],
-      ));
+      templates.add(
+        _SessionTemplate(
+          label: 'Full Body ${_dayLetter(i)}',
+          targetMuscles: [
+            'chest',
+            'back',
+            'quads',
+            'glutes',
+            'hamstrings',
+            'shoulders',
+            'biceps',
+            'triceps',
+            'core',
+          ],
+          primarySlots: 2,
+          secondarySlots: slotsPerSession.secondary,
+          accessorySlots: slotsPerSession.accessory,
+          requiredPatterns: [
+            MovementPattern.horizontalPush,
+            MovementPattern.horizontalPull,
+            MovementPattern.squat,
+            MovementPattern.hinge,
+          ],
+        ),
+      );
     }
     return templates;
   }
@@ -83,7 +94,10 @@ class PlanGeneratorEngine {
         primarySlots: 2,
         secondarySlots: slotsPerSession.secondary,
         accessorySlots: slotsPerSession.accessory,
-        requiredPatterns: [MovementPattern.horizontalPush, MovementPattern.horizontalPull],
+        requiredPatterns: [
+          MovementPattern.horizontalPush,
+          MovementPattern.horizontalPull,
+        ],
       ),
       _SessionTemplate(
         label: 'Lower A - Nogi, Pośladki',
@@ -99,7 +113,10 @@ class PlanGeneratorEngine {
         primarySlots: 2,
         secondarySlots: slotsPerSession.secondary,
         accessorySlots: slotsPerSession.accessory,
-        requiredPatterns: [MovementPattern.verticalPush, MovementPattern.verticalPull],
+        requiredPatterns: [
+          MovementPattern.verticalPush,
+          MovementPattern.verticalPull,
+        ],
       ),
       _SessionTemplate(
         label: 'Lower B - Nogi, Pośladki, Core',
@@ -121,7 +138,10 @@ class PlanGeneratorEngine {
         primarySlots: 1,
         secondarySlots: slotsPerSession.secondary + 1,
         accessorySlots: slotsPerSession.accessory,
-        requiredPatterns: [MovementPattern.horizontalPush, MovementPattern.verticalPush],
+        requiredPatterns: [
+          MovementPattern.horizontalPush,
+          MovementPattern.verticalPush,
+        ],
       ),
       _SessionTemplate(
         label: 'Pull - Plecy, Biceps',
@@ -129,7 +149,10 @@ class PlanGeneratorEngine {
         primarySlots: 1,
         secondarySlots: slotsPerSession.secondary + 1,
         accessorySlots: slotsPerSession.accessory,
-        requiredPatterns: [MovementPattern.horizontalPull, MovementPattern.verticalPull],
+        requiredPatterns: [
+          MovementPattern.horizontalPull,
+          MovementPattern.verticalPull,
+        ],
       ),
       _SessionTemplate(
         label: 'Legs - Nogi, Pośladki',
@@ -227,10 +250,20 @@ class PlanGeneratorEngine {
     required int slotIndex,
     MovementPattern? preferredPattern,
   }) {
-    final candidates = _filterCandidates(template, role, usedIds, preferredPattern);
+    final candidates = _filterCandidates(
+      template,
+      role,
+      usedIds,
+      preferredPattern,
+    );
     if (candidates.isEmpty) {
       // Fallback: try without role restriction
-      final fallback = _filterCandidates(template, null, usedIds, preferredPattern);
+      final fallback = _filterCandidates(
+        template,
+        null,
+        usedIds,
+        preferredPattern,
+      );
       if (fallback.isEmpty) return null;
       return _pickFromPool(fallback, slotIndex);
     }
@@ -329,7 +362,9 @@ class PlanGeneratorEngine {
     return pool[r.nextInt(pool.length)];
   }
 
-  List<PlannedExercise> _validateFatigueBudget(List<PlannedExercise> exercises) {
+  List<PlannedExercise> _validateFatigueBudget(
+    List<PlannedExercise> exercises,
+  ) {
     final maxFatigue = switch (config.level) {
       'beginner' => 12,
       'advanced' => 20,
@@ -362,7 +397,10 @@ class PlanGeneratorEngine {
     return result;
   }
 
-  PlannedExercise _assignSetsRepsRir(ExerciseModel exercise, ExerciseRole slotRole) {
+  PlannedExercise _assignSetsRepsRir(
+    ExerciseModel exercise,
+    ExerciseRole slotRole,
+  ) {
     int sets;
     int reps;
     int rir;
@@ -434,13 +472,17 @@ class PlanGeneratorEngine {
   }
 
   String _generateDescription() {
-    final goalLabels = config.goals.map((g) => switch (g) {
-      'hypertrophy' => 'budowa masy',
-      'strength' => 'siła',
-      'fat_loss' => 'redukcja',
-      'endurance' => 'kondycja',
-      _ => g,
-    }).join(', ');
+    final goalLabels = config.goals
+        .map(
+          (g) => switch (g) {
+            'hypertrophy' => 'budowa masy',
+            'strength' => 'siła',
+            'fat_loss' => 'redukcja',
+            'endurance' => 'kondycja',
+            _ => g,
+          },
+        )
+        .join(', ');
 
     return 'Plan wygenerowany dla poziomu ${config.level}, '
         '${config.daysPerWeek} dni/tydzień. Cel: $goalLabels.';

@@ -59,43 +59,35 @@ GoRouter appRouter(AppRouterRef ref) {
         routes: [
           GoRoute(
             path: '/home',
-            pageBuilder: (context, state) => const NoTransitionPage(
-              child: HomeScreen(),
-            ),
+            pageBuilder: (context, state) =>
+                const NoTransitionPage(child: HomeScreen()),
           ),
           GoRoute(
             path: '/generate',
-            pageBuilder: (context, state) => const NoTransitionPage(
-              child: GeneratorScreen(),
-            ),
+            pageBuilder: (context, state) =>
+                const NoTransitionPage(child: GeneratorScreen()),
           ),
           GoRoute(
             path: '/stats',
-            pageBuilder: (context, state) => const NoTransitionPage(
-              child: StatsScreen(),
-            ),
+            pageBuilder: (context, state) =>
+                const NoTransitionPage(child: StatsScreen()),
           ),
           GoRoute(
             path: '/account',
-            pageBuilder: (context, state) => const NoTransitionPage(
-              child: AccountScreen(),
-            ),
+            pageBuilder: (context, state) =>
+                const NoTransitionPage(child: AccountScreen()),
           ),
         ],
       ),
-      GoRoute(
-        path: '/login',
-        builder: (context, state) => const LoginScreen(),
-      ),
+      GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
       GoRoute(
         path: '/register',
         builder: (context, state) => const RegisterScreen(),
       ),
       GoRoute(
         path: '/plan/:id',
-        builder: (context, state) => PlanDetailScreen(
-          planId: state.pathParameters['id']!,
-        ),
+        builder: (context, state) =>
+            PlanDetailScreen(planId: state.pathParameters['id']!),
       ),
     ],
   );

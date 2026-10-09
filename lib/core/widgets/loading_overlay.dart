@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import '../theme/app_colors.dart';
 
 class LoadingOverlay {
-  static void show(BuildContext context, {String message = 'Generowanie planu...'}) {
+  static void show(
+    BuildContext context, {
+    String message = 'Generowanie planu...',
+  }) {
     showDialog(
       context: context,
       barrierDismissible: false,

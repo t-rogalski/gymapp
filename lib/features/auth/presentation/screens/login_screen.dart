@@ -33,10 +33,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     if (_isLoading) return;
     setState(() => _isLoading = true);
 
-    await ref.read(authNotifierProvider.notifier).login(
-      _emailController.text.trim(),
-      _passwordController.text,
-    );
+    await ref
+        .read(authNotifierProvider.notifier)
+        .login(_emailController.text.trim(), _passwordController.text);
 
     if (!mounted) return;
     setState(() => _isLoading = false);
@@ -104,9 +103,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     prefixIcon: const Icon(Icons.lock_outlined),
                     suffixIcon: IconButton(
                       icon: Icon(
-                        _obscurePassword ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                        _obscurePassword
+                            ? Icons.visibility_off_outlined
+                            : Icons.visibility_outlined,
                       ),
-                      onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
+                      onPressed: () =>
+                          setState(() => _obscurePassword = !_obscurePassword),
                     ),
                   ),
                 ),

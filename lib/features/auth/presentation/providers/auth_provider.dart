@@ -16,7 +16,10 @@ class AuthNotifier extends _$AuthNotifier {
       if (user != null) {
         state = AsyncValue.data(user);
       } else {
-        state = AsyncValue.error('Nieprawidłowe dane logowania', StackTrace.current);
+        state = AsyncValue.error(
+          'Nieprawidłowe dane logowania',
+          StackTrace.current,
+        );
       }
     } catch (e, st) {
       state = AsyncValue.error(e, st);

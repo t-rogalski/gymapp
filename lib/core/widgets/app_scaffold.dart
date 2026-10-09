@@ -37,9 +37,7 @@ class AppScaffold extends StatelessWidget {
       body: child,
       bottomNavigationBar: Container(
         decoration: const BoxDecoration(
-          border: Border(
-            top: BorderSide(color: AppColors.creamDark, width: 1),
-          ),
+          border: Border(top: BorderSide(color: AppColors.creamDark, width: 1)),
         ),
         child: NavigationBar(
           selectedIndex: selectedIndex,

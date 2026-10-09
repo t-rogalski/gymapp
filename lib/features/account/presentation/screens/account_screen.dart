@@ -44,7 +44,10 @@ class AccountScreen extends ConsumerWidget {
               const SizedBox(height: 4),
               Text(
                 user?.email ?? '',
-                style: const TextStyle(fontSize: 14, color: AppColors.textSecondary),
+                style: const TextStyle(
+                  fontSize: 14,
+                  color: AppColors.textSecondary,
+                ),
               ),
               const SizedBox(height: 12),
               OutlinedButton(
@@ -52,7 +55,9 @@ class AccountScreen extends ConsumerWidget {
                 style: OutlinedButton.styleFrom(
                   foregroundColor: AppColors.sageDark,
                   side: const BorderSide(color: AppColors.sage),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                 ),
                 child: const Text('Edytuj profil'),
               ),
@@ -62,8 +67,14 @@ class AccountScreen extends ConsumerWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  _StatPill(label: 'Waga', value: '${user?.weightKg ?? 79.5} kg'),
-                  _StatPill(label: 'Wzrost', value: '${user?.heightCm ?? 180} cm'),
+                  _StatPill(
+                    label: 'Waga',
+                    value: '${user?.weightKg ?? 79.5} kg',
+                  ),
+                  _StatPill(
+                    label: 'Wzrost',
+                    value: '${user?.heightCm ?? 180} cm',
+                  ),
                   const _StatPill(label: 'Cel', value: 'Budowa masy'),
                 ],
               ),
@@ -85,10 +96,19 @@ class AccountScreen extends ConsumerWidget {
                   ),
                 ),
               ),
-              _SettingsTile(icon: Icons.notifications_outlined, title: 'Powiadomienia treningowe'),
+              _SettingsTile(
+                icon: Icons.notifications_outlined,
+                title: 'Powiadomienia treningowe',
+              ),
               _SettingsTile(icon: Icons.flag_outlined, title: 'Moje cele'),
-              _SettingsTile(icon: Icons.straighten_outlined, title: 'Jednostki (kg/cm)'),
-              _SettingsTileSwitch(icon: Icons.dark_mode_outlined, title: 'Tryb ciemny'),
+              _SettingsTile(
+                icon: Icons.straighten_outlined,
+                title: 'Jednostki (kg/cm)',
+              ),
+              _SettingsTileSwitch(
+                icon: Icons.dark_mode_outlined,
+                title: 'Tryb ciemny',
+              ),
               const SizedBox(height: 16),
               const Align(
                 alignment: Alignment.centerLeft,
@@ -105,8 +125,14 @@ class AccountScreen extends ConsumerWidget {
                   ),
                 ),
               ),
-              _SettingsTile(icon: Icons.help_outline, title: 'Pomoc i wsparcie'),
-              _SettingsTile(icon: Icons.description_outlined, title: 'Warunki użytkowania'),
+              _SettingsTile(
+                icon: Icons.help_outline,
+                title: 'Pomoc i wsparcie',
+              ),
+              _SettingsTile(
+                icon: Icons.description_outlined,
+                title: 'Warunki użytkowania',
+              ),
               const SizedBox(height: 24),
 
               // Logout button
@@ -115,7 +141,9 @@ class AccountScreen extends ConsumerWidget {
                   ref.read(authNotifierProvider.notifier).logout();
                   context.go('/login');
                 },
-                style: TextButton.styleFrom(foregroundColor: Colors.red.shade400),
+                style: TextButton.styleFrom(
+                  foregroundColor: Colors.red.shade400,
+                ),
                 child: const Text('Wyloguj się'),
               ),
               const SizedBox(height: 40),
@@ -142,9 +170,19 @@ class _StatPill extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Text(label, style: const TextStyle(fontSize: 11, color: AppColors.textMuted)),
+          Text(
+            label,
+            style: const TextStyle(fontSize: 11, color: AppColors.textMuted),
+          ),
           const SizedBox(height: 2),
-          Text(value, style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: AppColors.textPrimary)),
+          Text(
+            value,
+            style: const TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+              color: AppColors.textPrimary,
+            ),
+          ),
         ],
       ),
     );
@@ -168,8 +206,15 @@ class _SettingsTile extends StatelessWidget {
         ),
         child: Icon(icon, size: 18, color: AppColors.sageDark),
       ),
-      title: Text(title, style: const TextStyle(fontSize: 15, color: AppColors.textPrimary)),
-      trailing: const Icon(Icons.chevron_right, color: AppColors.textMuted, size: 20),
+      title: Text(
+        title,
+        style: const TextStyle(fontSize: 15, color: AppColors.textPrimary),
+      ),
+      trailing: const Icon(
+        Icons.chevron_right,
+        color: AppColors.textMuted,
+        size: 20,
+      ),
       onTap: () {},
       contentPadding: const EdgeInsets.symmetric(horizontal: 4),
     );
@@ -193,7 +238,10 @@ class _SettingsTileSwitch extends StatelessWidget {
         ),
         child: Icon(icon, size: 18, color: AppColors.sageDark),
       ),
-      title: Text(title, style: const TextStyle(fontSize: 15, color: AppColors.textPrimary)),
+      title: Text(
+        title,
+        style: const TextStyle(fontSize: 15, color: AppColors.textPrimary),
+      ),
       trailing: Switch(
         value: false,
         onChanged: (_) {},

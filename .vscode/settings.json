@@ -53,5 +53,6 @@
     "**/build": true,
     "**/*.g.dart": true,
     "**/*.freezed.dart": true
-  }
+  },
+  "cmake.sourceDirectory": "C:/Users/User/Desktop/wszystko/gymapp/frontend/linux"
 }

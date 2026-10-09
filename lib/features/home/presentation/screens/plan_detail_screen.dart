@@ -28,10 +28,14 @@ class PlanDetailScreen extends ConsumerWidget {
           if (!plan.isActive)
             TextButton(
               onPressed: () {
-                ref.read(workoutPlansNotifierProvider.notifier).setActive(plan.id);
+                ref
+                    .read(workoutPlansNotifierProvider.notifier)
+                    .setActive(plan.id);
               },
-              child: const Text('Ustaw aktywny',
-                  style: TextStyle(color: AppColors.sageDark)),
+              child: const Text(
+                'Ustaw aktywny',
+                style: TextStyle(color: AppColors.sageDark),
+              ),
             ),
         ],
       ),
@@ -85,7 +89,10 @@ class PlanDetailScreen extends ConsumerWidget {
                 ),
                 if (plan.isGenerated) ...[
                   const SizedBox(width: 8),
-                  const _InfoChip(label: 'Wygenerowany', color: AppColors.lavender),
+                  const _InfoChip(
+                    label: 'Wygenerowany',
+                    color: AppColors.lavender,
+                  ),
                 ],
               ],
             ),
@@ -137,7 +144,11 @@ class _InfoChip extends StatelessWidget {
       ),
       child: Text(
         label,
-        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: color),
+        style: TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.w500,
+          color: color,
+        ),
       ),
     );
   }
@@ -161,8 +172,13 @@ class _DayExpansionTile extends StatelessWidget {
         childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
         leading: day.isCompleted
             ? const Icon(Icons.check_circle, color: AppColors.sageMid, size: 20)
-            : Text('${day.dayNumber}',
-                style: const TextStyle(fontWeight: FontWeight.w600, color: AppColors.textMuted)),
+            : Text(
+                '${day.dayNumber}',
+                style: const TextStyle(
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.textMuted,
+                ),
+              ),
         title: Text(
           day.label,
           style: const TextStyle(
@@ -175,7 +191,9 @@ class _DayExpansionTile extends StatelessWidget {
           '${day.exercises.length} ćwiczeń',
           style: const TextStyle(fontSize: 12, color: AppColors.textMuted),
         ),
-        children: day.exercises.map((pe) => _ExerciseTile(planned: pe)).toList(),
+        children: day.exercises
+            .map((pe) => _ExerciseTile(planned: pe))
+            .toList(),
       ),
     );
   }
@@ -232,13 +250,22 @@ class _ExerciseTile extends StatelessWidget {
                   children: [
                     Text(
                       '${planned.sets}×${planned.reps}',
-                      style: const TextStyle(fontSize: 12, color: AppColors.textSecondary),
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: AppColors.textSecondary,
+                      ),
                     ),
                     if (planned.rir > 0) ...[
-                      const Text(' • ', style: TextStyle(color: AppColors.textMuted)),
+                      const Text(
+                        ' • ',
+                        style: TextStyle(color: AppColors.textMuted),
+                      ),
                       Text(
                         'RIR ${planned.rir}',
-                        style: const TextStyle(fontSize: 12, color: AppColors.textMuted),
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: AppColors.textMuted,
+                        ),
                       ),
                     ],
                   ],
